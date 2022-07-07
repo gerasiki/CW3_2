@@ -15,7 +15,7 @@ class UsersViews(Resource):
         return UsersService(db.session).get_all_users()
 
 
-@users_ns.route("/<int:user_id>")
+@users_ns.route("/<int:user_id>/")
 class UserView(Resource):
     @users_ns.response(200, "OK")
     @users_ns.response(404, "User not found")
@@ -38,7 +38,7 @@ class UserView(Resource):
             abort(404, message="User not found")
 
 
-@users_ns.route("/password/<int:user_id>")
+@users_ns.route("/password/<int:user_id>/")
 class UserPatchView(Resource):
     @users_ns.response(200, "OK")
     @users_ns.response(404, "User not found")

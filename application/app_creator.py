@@ -5,7 +5,7 @@ from flask_restx import Api
 
 from application.database import db
 from application.exceptions import BaseServiceError
-from application.views.auth import auth_ns
+from application.views.auth import register_ns, login_ns
 from application.views.directors import directors_ns
 from application.views.genres import genres_ns
 from application.views.movies import movies_ns
@@ -36,7 +36,8 @@ def create_app(config_obj):
     api.add_namespace(genres_ns)
     api.add_namespace(movies_ns)
     api.add_namespace(users_ns)
-    api.add_namespace(auth_ns)
+    api.add_namespace(register_ns)
+    api.add_namespace(login_ns)
     # app.register_error_handler(BaseServiceError, base_service_error_handler)
 
     return app

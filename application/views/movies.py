@@ -27,7 +27,7 @@ class MoviesView(Resource):
         return MoviesService(db.session).get_all_movies(condition)
 
 
-@movies_ns.route("/<int:movie_id>")
+@movies_ns.route("/<int:movie_id>/")
 class MovieView(Resource):
     @movies_ns.response(200, "OK")
     @movies_ns.response(404, "Movie not found")

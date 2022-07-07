@@ -6,10 +6,11 @@ from application.exceptions import ItemNotFound
 from application.services.users import UsersService
 from application.tools.security import user_auth, refresh_token_
 
-auth_ns = Namespace("auth")
+login_ns = Namespace("login")
+register_ns = Namespace('register')
 
 
-@auth_ns.route("/login")
+@login_ns.route("/")
 class AuthView(Resource):
     def post(self):
         req_json = request.json
@@ -35,7 +36,7 @@ class AuthView(Resource):
             abort(401, "Authorisation's error")
 
 
-@auth_ns.route('/register')
+@register_ns.route('/')
 class AuthRegView(Resource):
     def post(self):
         req_json = request.json
