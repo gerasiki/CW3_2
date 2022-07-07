@@ -9,7 +9,7 @@ from application.tools.security import user_auth, refresh_token_
 auth_ns = Namespace("auth")
 
 
-@auth_ns.route("/")
+@auth_ns.route("/login")
 class AuthView(Resource):
     def post(self):
         req_json = request.json
