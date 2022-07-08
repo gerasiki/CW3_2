@@ -6,12 +6,20 @@ from application.exceptions import ItemNotFound
 from application.services.users import UsersService
 from application.tools.security import user_auth, refresh_token_
 
-login_ns = Namespace("login")
-register_ns = Namespace('register')
+auth_ns = Namespace("auth")
 
 
-@login_ns.route("/")
+@auth_ns.route("/login/")
 class AuthView(Resource):
+    def get(self):
+        req_json = request.json
+        email = req_json.get("email", None)
+        password = req_json.get("password", None)
+        if None in [email, password]:
+            abort(401)
+        else:
+            return 200
+
     def post(self):
         req_json = request.json
         email = req_json.get("email", None)
@@ -36,7 +44,7 @@ class AuthView(Resource):
             abort(401, "Authorisation's error")
 
 
-@register_ns.route('/')
+@auth_ns.route('/register/')
 class AuthRegView(Resource):
     def post(self):
         req_json = request.json
